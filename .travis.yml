@@ -1,9 +1,10 @@
+language: generic 
 sudo: required
 services: 
   - docker
 
 before-install:
-  - docker build -e CI=true inconbeo/docker-react -f Dockerfile.dev .
+  - docker build -t inconbeo/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run inconbeo/docker-react npm run test -- --coverage
+  - docker run -e CI=true inconbeo/docker-react npm run test
